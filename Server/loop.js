@@ -32,6 +32,21 @@ for(let o =5; o<79;o++){
 
 let teachers = ["Niklas", "Victor", "Parvin"]
 
-for (let n =teachers.length - 1; n >= 0; n--){
-    console.log(teachers[n])
+for (let t =teachers.length - 1; t >= 0; t--){
+    console.log(teachers[t])
+}
+
+for (let n = 0; n<100;n++){
+    if(n % 2==0){
+        console.log(n)
+    }
+    else if(n % 3==0 && n % 5 ==0){
+        console.log("FizzBuzz")
+    }
+    else if(n % 3 ==0){
+        console.log("Fizz")
+    }
+    else if(n % 5==0){
+        console.log("Buzz")
+    }
 }
