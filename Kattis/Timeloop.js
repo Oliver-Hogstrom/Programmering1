@@ -5,12 +5,11 @@ const rl = readline.createInterface({
     output: process.stdout
   });
 
-rl.question('How many Abracadabras do you want?',(answer)=>{
-    for(let i=1;i<50;i++){
-        if(i % 2==0){
-            console.log(i + ` ${answer}`)
+rl.question('How many Abracadabras do you want? ',(answer)=>{
+    for(let i=1;i<=answer;i++){
+        if(i % 1==0){
+            console.log(i + " Abracadabra")
 rl.close();
         }
     }
 });
-
