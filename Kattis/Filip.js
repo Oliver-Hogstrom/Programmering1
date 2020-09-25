@@ -1,26 +1,28 @@
 const { reverse } = require('dns');
-var readline = require('readline');
+const readline = require('readline');
 
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
   });
 
-  const one = rl.question('What is the first number? ')
-  const two = rl.question('What is the second number? ')
+rl.question('Write the first three digit number: ', (answer)=>{
+  let numbers = answer.split(' ')
+  console.log(numbers)
 
-  let answer;
+  let num1 = numbers[0].split('').reverse().join('')
+  let num2 = numbers[1].split('').reverse().join('')
 
-  if(one<two){
-    answer = reverseInt(one)
-  }else{
-    answer = reverseInt(two)
+  if(num1 > num2){
+    console.log("Number 1 is the largest")
   }
-  function reverseInt(a) {
-    const reversed = a.toString('').split('').reverse('').join(''); 
-    return Math.sign(a) * parseInt(reversed); }
+  else if(num1<num2){
+    console.log("Number 2 is the largest: " )
+  }
+  
+})
 
-    console.log(answer)
+
 
 
 
