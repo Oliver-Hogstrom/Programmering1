@@ -5,16 +5,34 @@ const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
   });
+  const alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ_."
 
+  rl.question("Type in a number and an message: " ,(answer)=>{
+    
+    let splitAnswer = answer.split(' ')
 
-  const alpha = ["A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,.,_"]
+    let rotation = Number(splitAnswer[0])
+    let message = splitAnswer[1]
 
-  rl.question("What string do you want? " ,(answer)=>{
-    let string = answer.split('').reverse()
-    console.log (string)
-  
-    rl.question("How many rotations do you want? ", (rot)=>{
-      
-    })
+    let result = ""
+
+    for (const letter of message) {
+        let letterIndex = alpha.indexOf(letter)
+
+        let newIndex = letterIndex + rotation
+
+        if(newIndex > 27){
+          newIndex = newIndex - 28
+        }
+
+        let newLetter = alpha[newIndex]
+
+        result += newLetter
+    }
+    let reverseResult = result.split('').reverse().join('')
+    console.log(reverseResult)
+
+    rl.close()
+
   })
    
