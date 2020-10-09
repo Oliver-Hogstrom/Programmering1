@@ -9,7 +9,10 @@ const rl = readline.createInterface({
 rl.question("Write the span of the dices: "), (answer) =>{
     // skapa variabler för avr 1 och avrage 2
 
-    let splitAnswer = answer.spilt(' ')
-    
+    let splitAnswer = answer.spilt('')
+    let dice1 = splitAnswer [0,1]
+    let dice2 = splitAnswer [2,3]
+    console.log(dice1 )
 
+    rl.close()
 }
