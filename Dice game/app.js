@@ -23,7 +23,7 @@ function code(){
     console.log(result1 , result2);
 
     if(result1>result2){
-      console.log('Emma is the winner with a score of: ' + result1);
+      console.log('Emma is the winner with a score of: ' + result1)
     }else if(result1<result2){
       console.log('Gunanr is the winner with a score of: ' + result2)
     }else if(result1==result2){
