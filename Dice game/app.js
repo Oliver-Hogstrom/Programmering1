@@ -1,3 +1,5 @@
+// Räkna ut medelkast = högsta + lägsta /2
+
 const readline = require('readline');
 
 const rl = readline.createInterface({
@@ -5,14 +7,34 @@ const rl = readline.createInterface({
     output: process.stdout
   });
 
-// 1. Skriv in in 4 tal, varav 2 är dice 1 och de andra 2 är dice 2
-rl.question("Write the span of the dices: "), (answer) =>{
-    // skapa variabler för avr 1 och avrage 2
+const lines = []
 
-    let splitAnswer = answer.spilt('')
-    let dice1 = splitAnswer [0,1]
-    let dice2 = splitAnswer [2,3]
-    console.log(dice1 )
+function code(){
+    let side1 = Number(lines[0])
+    let side2 = Number(lines[1])
+    let side3 = Number(lines[2])
+    let side4 = Number(lines[3])
 
-    rl.close()
-}
+// Emma is result1 and gunnar is result 2
+
+    let result1 = (side1 + side2)/2
+    let result2 = (side3 + side4)/2
+
+    console.log(result1 , result2);
+
+    if(result1>result2){
+      console.log('Emma is the winner with a score of: ' + result1);
+    }else if(result1<result2){
+      console.log('Gunanr is the winner with a score of: ' + result2)
+    }else if(result1==result2){
+      console.log('Tie!!!');
+    }
+  }
+
+  rl.on('line', (input) => {
+    lines.push(input)
+    if(lines.length == 4){
+      code()
+      rl.close()
+    }
+  });
