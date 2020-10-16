@@ -14,17 +14,12 @@ function code(){
     let side2 = Number(lines[1])
     let side3 = Number(lines[2])
     let side4 = Number(lines[3])
-    let side5 = Number(lines[4])
-    let side6 = Number(lines[5])
-    let side7 = Number(lines[6])
-    let side8 = Number(lines[7])
+
+    console.log(side1);
 
 // Emma is result1 and gunnar is result 2
-
-
-
-    let result1 = ((side1 + side2)/2) + ((side3 + side4)/2)
-    let result2 = ((side5 + side6)/2) + ((side7 + side8)/2)
+    let result1 = ((side1 + side2)/2) 
+    let result2 = ((side3 + side4)/2)
 
     console.log(result1, ":", result2);
 
@@ -39,7 +34,7 @@ function code(){
 
   rl.on('line', (input) => {
     lines.push(input)
-    if(lines.length == 8){
+    if(lines.length == 4){
       code()
       rl.close()
     }
