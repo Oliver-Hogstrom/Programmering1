@@ -1,4 +1,3 @@
-const  reverse  = require('dns');
 const readline = require('readline');
 
 const rl = readline.createInterface({
