@@ -5,26 +5,30 @@ const rl = readline.createInterface({
     output: process.stdout
   });
 
-const lines = []
+let random = Math.round(Math.random() * 10) + 1;
+  
+let tries = 5
 
-function random(min, max){
-    return Math.floor(Math.random() * (max-min+1) ) +min
-}
+      rl.on('line', (input)=>{
+        let ans = parseInt(input)
+        tries--;
 
-function code(){
-    
-    
-}
-console.log('You have 5 guesses in total: ');
-rl.on('line', (input) => {
-    lines.push(input)
-    if(lines.length == 5){
-        code()
-        rl.close()
-    }
-  });
-
-
+        if(tries === 0){
+          console.log("You're out of tries m8 :(")
+          process.exit();
+        }
+        else if(random==ans){
+          console.log("Congrats, you've won!");
+          process.exit();
+        }
+        else if(random>ans){
+          console.log("You have to guess higher mate!");
+        }
+        else if(random<ans){
+          console.log("You have to guess lower mate!");
+        } 
+        })
+      
 //   Slumpa ett tal mellan 1-10 (Check)
 //   Be användaren att gissa 5 gånger på rätt tal
 //   Jämför användaren input till random talet
