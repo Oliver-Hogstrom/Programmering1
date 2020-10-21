@@ -9,7 +9,7 @@ let random = Math.round(Math.random() * 100) + 1;
   
 let tries = 5
 
-console.log("You have to guess the right number, it's a number between 1-10")
+console.log("You have to guess the right number, it's a number between 1-100")
 
       rl.on('line', (input)=>{
         let ans = parseInt(input)
@@ -21,13 +21,16 @@ console.log("You have to guess the right number, it's a number between 1-10")
           process.exit();
         }
         else if(random==ans){
+          
           console.log("Congrats, you've won!");
-          process.exit(random);
+          process.exit();
         }
         else if(random>ans){
+          console.log("You have ", tries, " tries left");
           console.log("You have to guess higher mate!");
         }
         else if(random<ans){
+          console.log("You have ", tries, "tries left");
           console.log("You have to guess lower mate!");
         } 
         })
