@@ -1,4 +1,5 @@
 // HANGMAN
+
 // 1. Ge användaren instruktioner om hur spelet ska gå till med console.log()
 // 2. Slumpa ett ord från en lista som användaren ska gissa på med en random funktion()
 //     2.1 Slumpa eller be användaren att skriva in ett eget ord som andra ska gissa på (Optional)
@@ -10,6 +11,9 @@
 
 // Vad som alltid ska skrivas ut: Skriv ut vilka bokstäver som användaren har gissat på
 
+
+// När jag byggt klart spelet, implementera att måla ut gubben i konsollen, eller bind ihop spelet med en .HTML
+
 // Let the games begin
 
 const readline = require('readline')
@@ -18,4 +22,3 @@ const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
-
