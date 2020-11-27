@@ -11,7 +11,6 @@
 
 // Vad som alltid ska skrivas ut: Skriv ut vilka bokstäver som användaren har gissat på
 
-
 // När jag byggt klart spelet, implementera att måla ut gubben i konsollen, eller bind ihop spelet med en .HTML
 
 // Let the games begin
@@ -22,3 +21,14 @@ const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
+
+// This section is purly to give the instructions to the player about how the games is going to be played
+function intruductionToPlayer() {
+    console.log("Hello and welcome to Hangman")
+    console.log("You will be givinh a random word and u have to guess that word")
+    console.log("You will be givien 7 wrong guesses before the man is hanged")
+    console.log("U have to guess in all lowercase characters, one character at a time.")
+    console.log("GL HF")
+}
+
+// This section will be dedicated to the words that will be randomized from a array of different words
