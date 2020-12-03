@@ -24,6 +24,9 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
+let rightGuesses = []
+let wrongGuesses = []
+
 // This section is purly to give the instructions to the player about how the games is going to be played
 function intruductionToPlayer() {
     console.log("Hello and welcome to Hangman")
@@ -35,6 +38,8 @@ function intruductionToPlayer() {
 
 // This section will be dedicated to the words that will be randomized from a array of different words
 // I have a array with words i have written myself and a random function to randomize the words in the array
+
+
 
 let hangmanWords = ['discord', 'programming', 'server', 'node', 'wallah']
 
@@ -48,9 +53,19 @@ function randomWords() {
 
 // Now we need to ask the player to guess and compere the guesses with the splitted random word.
 function playerGuess() {
-    const tries = 7
+    const wrongTries = 7
 
-    if (condition) {
+    if (wrongTries === 0) {
+        console.log("You have lost the game...");
+        console.log("The right word was " + randomHangmanWords);
+    }
+    else if(guess == splittedWord){
         
     }
 }
+
+// This is to write the correct guesses
+
+rl.on('line', (input) => {  
+    
+})

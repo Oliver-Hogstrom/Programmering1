@@ -20,7 +20,6 @@ rl.on('line', (input) => {
         console.log("The number was: ", random);
         process.exit();
     } else if (random == ans) {
-
         console.log("Congrats, you've won!");
         process.exit();
     } else if (random > ans) {
