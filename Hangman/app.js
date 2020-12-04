@@ -39,8 +39,6 @@ function intruductionToPlayer() {
 // This section will be dedicated to the words that will be randomized from a array of different words
 // I have a array with words i have written myself and a random function to randomize the words in the array
 
-
-
 let hangmanWords = ['discord', 'programming', 'server', 'node', 'wallah']
 
 function randomWords() {
@@ -55,17 +53,32 @@ function randomWords() {
 function playerGuess() {
     const wrongTries = 7
 
-    if (wrongTries === 0) {
-        console.log("You have lost the game...");
-        console.log("The right word was " + randomHangmanWords);
-    }
-    else if(guess == splittedWord){
-        
+    while(wrongTries != 0){
+        if (wrongTries === 0) {
+            console.log("You have lost the game...");
+            console.log("The right word was " + randomHangmanWords);
+            process.exit()
+        }
+        else if(rightGuesses == randomHangmanWords){
+            console.log('Congratulations you have won. Fell good about yourself for not hanging the poor man')
+        }
+        else if(guess == splittedWord){
+            rightGuesses.push(guess)
+        }
+        else if (guess != splittedWord){
+            wrongTries--
+            wrongGuesses.push(guess)
+        }
+        else if(guess == Number){
+            console.log('You need to write a lowercase character and not a number');
+            process.exit()
+        }
     }
 }
 
-// This is to write the correct guesses
+rl.on('line', (guess) => {  
+    intruductionToPlayer()
+    randomWords()
+    playerGuess(guess)
 
-rl.on('line', (input) => {  
-    
 })
