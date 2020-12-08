@@ -76,9 +76,6 @@ function playerGuess() {
     }
 }
 
-rl.on('line', (guess) => {  
-    intruductionToPlayer()
-    randomWords()
-    playerGuess(guess)
-
+rl.on('line', (guess) => {
+    
 })
