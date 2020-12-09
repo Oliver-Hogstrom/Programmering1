@@ -24,8 +24,8 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-let rightGuesses = []
-let wrongGuesses = []
+const rightGuesses = []
+const wrongGuesses = []
 
 // This section is purly to give the instructions to the player about how the games is going to be played
 function intruductionToPlayer() {
@@ -39,43 +39,51 @@ function intruductionToPlayer() {
 // This section will be dedicated to the words that will be randomized from a array of different words
 // I have a array with words i have written myself and a random function to randomize the words in the array
 
-let hangmanWords = ['discord', 'programming', 'server', 'node', 'wallah']
+const hangmanWords = ['wallah']
+// const hangmanWords = ['discord', 'programming', 'server', 'node', 'wallah']
 
 function randomWords() {
     
     let randomHangmanWords = hangmanWords[Math.floor(hangmanWords.length * Math.random())]
 
     let splittedWord = randomHangmanWords.split('')
-    console.log(splittedWord);
+    
+    return splittedWord
 }
 
 // Now we need to ask the player to guess and compere the guesses with the splitted random word.
-function playerGuess() {
-    const wrongTries = 7
+let wrongTries = 7
 
-    while(wrongTries != 0){
+function playerGuess(guess) {
+    
         if (wrongTries === 0) {
             console.log("You have lost the game...");
-            console.log("The right word was " + randomHangmanWords);
+            console.log("The right word was " + randomWords());
             process.exit()
         }
-        else if(rightGuesses == randomHangmanWords){
-            console.log('Congratulations you have won. Fell good about yourself for not hanging the poor man')
-        }
-        else if(guess == splittedWord){
+        else if(guess == randomWords()){
+            console.log('You have: ' + wrongTries + ' wrong guesses left')
+            console.log('You have guessed wrong on: ' + wrongGuesses);
+            console.log('Your right guesses are: ' + rightGuesses);
             rightGuesses.push(guess)
         }
-        else if (guess != splittedWord){
+        else if (guess != randomWords()){
             wrongTries--
+            console.log('You have: ' + wrongTries + ' wrong guesses left')
+            console.log('You have guessed wrong on: ' + wrongGuesses);
+            console.log('Your right guesses are: ' + rightGuesses);
             wrongGuesses.push(guess)
         }
-        else if(guess == Number){
-            console.log('You need to write a lowercase character and not a number');
+        if(rightGuesses == randomWords()){
+            console.log('Congratulations you have won. Fell good about yourself for not hanging the poor man')
             process.exit()
         }
     }
-}
+
+
+intruductionToPlayer()
 
 rl.on('line', (guess) => {
-    
+    randomWords()
+    playerGuess(guess)
 })
