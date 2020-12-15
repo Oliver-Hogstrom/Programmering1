@@ -27,7 +27,6 @@ const rl = readline.createInterface({
 let wrongTries = 7
 
 const splittedWord = []
-
 const rightGuesses = []
 const wrongGuesses = []
 
@@ -52,8 +51,8 @@ function setUpGame() {
 // This section will be dedicated to the words that will be randomized from a array of different words
 // I have a array with words i have written myself and a random function to randomize the words in the array
 
-const hangmanWords = ['wallah, discord, node, programming, rainbow']
-// const hangmanWords = ['discord', 'programming', 'server', 'node', 'wallah']
+
+const hangmanWords = ['discord', 'programming', 'server', 'node', 'wallah']
 
 function randomWords() {
     
@@ -70,24 +69,26 @@ function randomWords() {
 // Now we need to ask the player to guess and compere the guesses with the splitted random word.
 
 function playerGuess(guess) {
-    
+
         if (wrongTries === 0) {
             console.log("You have lost the game...");
             console.log("The right word was " + splittedWord);
             process.exit()
         }
         else if(guess == splittedWord){
-            console.log('You have: ' + wrongTries + ' wrong guesses left')
-            console.log('You have guessed wrong on: ' + wrongGuesses);
-            console.log('Your right guesses are: ' + rightGuesses);
             rightGuesses.push(guess)
+            console.log('Congrats, one right guess')
+            console.log('Right guesses are: ' + rightGuesses);
+            console.log('Wrong guesses are :' + wrongGuesses);
+            console.log('U have ' + wrongTries + ' left');
         }
         else if (guess != splittedWord){
-            wrongTries--
-            console.log('You have: ' + wrongTries + ' wrong guesses left')
-            console.log('You have guessed wrong on: ' + wrongGuesses);
-            console.log('Your right guesses are: ' + rightGuesses);
             wrongGuesses.push(guess)
+            wrongTries--
+            console.log('Nice try but it was wrong');  
+            console.log('Right guesses are: ' + rightGuesses);
+            console.log('Wrong guesses are :' + wrongGuesses);
+            console.log('U have ' + wrongTries + ' left');
         }
         if(rightGuesses == splittedWord){
             console.log('Congratulations you have won. Fell good about yourself for not hanging the poor man')
