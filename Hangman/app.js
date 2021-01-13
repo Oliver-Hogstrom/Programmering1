@@ -9,7 +9,9 @@
 //     3.2 Skapa villkor ifall användaren gissar med ett tal eller flera bokstäver i loopen.
 // 4. Spara användarens gissningar och skriv ut dem i console i den ordning som orden finns i orden
 //      4.1 skriv även ut i en console log hur många fel gissningar som spelaren har kvar efter varje gissnins.
-// 5. Skapa villkor för om användaren vinner eller när användaren har slut på gissningar aka dödat mannen
+// 5. Skapa en funktion med en for loop i som kommer att jämföra det slumpade ordet med användarens gissningar. Alltså ska loopen gå igenom randomordet och se om användarens
+//      gissning finns i ordet eller inte.
+// 6. Skapa villkor för om användaren vinner eller när användaren har slut på gissningar aka dödat mannen
 
 // Vad som alltid ska skrivas ut: Skriv ut vilka bokstäver som användaren har gissat på
 
@@ -26,7 +28,6 @@ const rl = readline.createInterface({
 
 let wrongTries = 7
 
-const splittedWord = []
 const rightGuesses = []
 const wrongGuesses = []
 
@@ -41,9 +42,6 @@ function intruductionToPlayer() {
 
 function setUpGame() {
     intruductionToPlayer()
-    splittedWord.splice(0,splittedWord.length)
-    rightGuesses.splice(0,rightGuesses.length)
-    wrongGuesses.splice(0,wrongGuesses.length)
     wrongTries = 7
     randomWords()
 }
@@ -54,35 +52,37 @@ function setUpGame() {
 
 const hangmanWords = ['discord', 'programming', 'server', 'node', 'wallah']
 
+const randomHangmanWords = []
 function randomWords() {
     
-    const randomHangmanWords = hangmanWords[Math.floor(hangmanWords.length * Math.random())]
+    randomHangmanWords = hangmanWords[Math.floor(hangmanWords.length * Math.random())]
+}
 
-    for (const index in randomHangmanWords.split('')) {
-        if (randomHangmanWords.split('').hasOwnProperty(index)) {
-            const element = randomHangmanWords.split('')[index];
-            splittedWord.push(element)
-        }
+// This will be a loop to compare the randomHangmanWords with the guesses the player makes
+
+function compareRandomWordWithGuess(guess, randomHangmanWords) {
+    for (let index = 0; index < array.length; index++) {
+        const element = array[index];
+        
     }
 }
 
 // Now we need to ask the player to guess and compere the guesses with the splitted random word.
-
-function playerGuess(guess) {
+function playerGuess(guess,) {
 
         if (wrongTries === 0) {
             console.log("You have lost the game...");
-            console.log("The right word was " + splittedWord);
+            console.log("The right word was " + randomHangmanWords);
             process.exit()
         }
-        else if(guess == splittedWord){
+        else if(guess == randomHangmanWords){
             rightGuesses.push(guess)
             console.log('Congrats, one right guess')
             console.log('Right guesses are: ' + rightGuesses);
             console.log('Wrong guesses are :' + wrongGuesses);
             console.log('U have ' + wrongTries + ' left');
         }
-        else if (guess != splittedWord){
+        else if (guess != randomHangmanWords){
             wrongGuesses.push(guess)
             wrongTries--
             console.log('Nice try but it was wrong');  
@@ -90,7 +90,7 @@ function playerGuess(guess) {
             console.log('Wrong guesses are :' + wrongGuesses);
             console.log('U have ' + wrongTries + ' left');
         }
-        if(rightGuesses == splittedWord){
+        if(rightGuesses == randomHangmanWords){
             console.log('Congratulations you have won. Fell good about yourself for not hanging the poor man')
             process.exit()
         }
@@ -98,6 +98,6 @@ function playerGuess(guess) {
 
 setUpGame()
 
-rl.on('line', (guess) => {
-    playerGuess(guess)
+rl.on('line', (guess ) => {
+    playerGuess(guess )
 })
