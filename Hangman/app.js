@@ -53,22 +53,26 @@ function setUpGame() {
 const hangmanWords = ['discord', 'programming', 'server', 'node', 'wallah']
 
 const randomHangmanWords = []
+
 function randomWords() {
-    
     randomHangmanWords = hangmanWords[Math.floor(hangmanWords.length * Math.random())]
 }
 
 // This will be a loop to compare the randomHangmanWords with the guesses the player makes
 
-function compareRandomWordWithGuess(guess, randomHangmanWords) {
-    for (let index = 0; index < array.length; index++) {
-        const element = array[index];
-        
+function compareRandomWordWithGuess(guess, rightGuesses, wrongGuesses, randomHangmanWords) {
+    for (let i = 0; i < randomHangmanWords.length; i++) {
+        if (randomHangmanWords[i] !== guess) {
+            wrongGuesses.push(guess)
+        }
+        else if(randomHangmanWords[i] == guess){
+            rightGuesses.push(guess)
+        }
     }
 }
 
 // Now we need to ask the player to guess and compere the guesses with the splitted random word.
-function playerGuess(guess,) {
+function playerGuess(guess) {
 
         if (wrongTries === 0) {
             console.log("You have lost the game...");
@@ -76,14 +80,12 @@ function playerGuess(guess,) {
             process.exit()
         }
         else if(guess == randomHangmanWords){
-            rightGuesses.push(guess)
             console.log('Congrats, one right guess')
             console.log('Right guesses are: ' + rightGuesses);
             console.log('Wrong guesses are :' + wrongGuesses);
             console.log('U have ' + wrongTries + ' left');
         }
         else if (guess != randomHangmanWords){
-            wrongGuesses.push(guess)
             wrongTries--
             console.log('Nice try but it was wrong');  
             console.log('Right guesses are: ' + rightGuesses);
@@ -98,6 +100,6 @@ function playerGuess(guess,) {
 
 setUpGame()
 
-rl.on('line', (guess ) => {
-    playerGuess(guess )
+rl.on('line', (guess) => {
+    playerGuess(guess)
 })
