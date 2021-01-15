@@ -46,57 +46,33 @@ function setUpGame() {
     randomWords()
 }
 
-// This section will be dedicated to the words that will be randomized from a array of different words
-// I have a array with words i have written myself and a random function to randomize the words in the array
-
-
 const hangmanWords = ['discord', 'programming', 'server', 'node', 'wallah']
 
 const randomHangmanWords = []
 
 function randomWords() {
-    randomHangmanWords = hangmanWords[Math.floor(hangmanWords.length * Math.random())]
+    randomHangmanWords.push(hangmanWords[Math.floor(hangmanWords.length * Math.random())])
 }
+
 
 // This will be a loop to compare the randomHangmanWords with the guesses the player makes
 
-function compareRandomWordWithGuess(guess, rightGuesses, wrongGuesses, randomHangmanWords) {
-    for (let i = 0; i < randomHangmanWords.length; i++) {
-        if (randomHangmanWords[i] !== guess) {
-            wrongGuesses.push(guess)
-        }
-        else if(randomHangmanWords[i] == guess){
-            rightGuesses.push(guess)
-        }
-    }
-}
+// function compareRandomWordWithGuess(guess, rightGuesses, wrongGuesses, randomHangmanWords) {
+//     for (let i = 0; i < randomHangmanWords.length; i++) {
+//         if (randomHangmanWords[i] !== guess) {
+//             wrongGuesses.push(guess)
+//         }
+//         else if(randomHangmanWords[i] == guess){
+//             rightGuesses.push(guess)
+//         }
+//     }
+// }
 
 // Now we need to ask the player to guess and compere the guesses with the splitted random word.
-function playerGuess(guess) {
-
-        if (wrongTries === 0) {
-            console.log("You have lost the game...");
-            console.log("The right word was " + randomHangmanWords);
-            process.exit()
-        }
-        else if(guess == randomHangmanWords){
-            console.log('Congrats, one right guess')
-            console.log('Right guesses are: ' + rightGuesses);
-            console.log('Wrong guesses are :' + wrongGuesses);
-            console.log('U have ' + wrongTries + ' left');
-        }
-        else if (guess != randomHangmanWords){
-            wrongTries--
-            console.log('Nice try but it was wrong');  
-            console.log('Right guesses are: ' + rightGuesses);
-            console.log('Wrong guesses are :' + wrongGuesses);
-            console.log('U have ' + wrongTries + ' left');
-        }
-        if(rightGuesses == randomHangmanWords){
-            console.log('Congratulations you have won. Fell good about yourself for not hanging the poor man')
-            process.exit()
-        }
-    }
+function name(params) {
+    // Gör om denna funktion med loopar som kommer behandla användarens gissningar och
+    // 
+}
 
 setUpGame()
 
