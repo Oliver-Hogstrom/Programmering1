@@ -37,6 +37,8 @@ let wrongTries = 7
 const rightGuesses = []
 const wrongGuesses = []
 
+const final = []
+
 // This section is purly to give the instructions to the player about how the games is going to be played
 function intruductionToPlayer() {
     console.log("Hello and welcome to Hangman")
@@ -60,16 +62,31 @@ function randomWords() {
     randomHangmanWords.push(hangmanWords[Math.floor(hangmanWords.length * Math.random())])
 }
 
-function finalRandomWord(randomHangmanWords, guess) {
+function finalRandomWord(randomHangmanWords) {
     // Gör om denna funktion med loopar som kommer behandla användarens gissningar och
     for (let i = 0; i < randomHangmanWords.length; i++) {
-        guess[i] = '_';
+        final.push('_')
     }
-    console.log(guess.join(''));
+    // console.log(final.join(''));
 }
 
-function name(params) {
-    
+function playerGuess(guess) {
+
+    finalRandomWord(randomHangmanWords)
+
+   if (wrongTries === 0) {
+       console.log('You have lost the game...');
+   }
+   else if (guess.length === 1) {
+        for (let g = 0; g < randomHangmanWords.length; g++) {
+            if (randomHangmanWords[g] === guess) {
+                final[g] = guess
+            }
+        }
+        console.log('You have: ', wrongTries, ' left');
+        console.log('Good job, you managed to guess a charachter right, keep it up.');
+   }
+   else if ()
 }
 
 setUpGame()
