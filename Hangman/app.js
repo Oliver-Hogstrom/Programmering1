@@ -19,6 +19,8 @@
 
 // Let the games begin 
 
+// För att kunna köra detta programmet använder jag Readline
+
 const readline = require('readline')
 
 const rl = readline.createInterface({
@@ -26,7 +28,11 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
+// Denna variabel definerar hur många felaktiga gissningar som avnändaren har
+
 let wrongTries = 7
+
+// Dessa listor kommer att bestå av rätta gissningar samt felaktiga gissningar
 
 const rightGuesses = []
 const wrongGuesses = []
@@ -54,24 +60,16 @@ function randomWords() {
     randomHangmanWords.push(hangmanWords[Math.floor(hangmanWords.length * Math.random())])
 }
 
-
-// This will be a loop to compare the randomHangmanWords with the guesses the player makes
-
-// function compareRandomWordWithGuess(guess, rightGuesses, wrongGuesses, randomHangmanWords) {
-//     for (let i = 0; i < randomHangmanWords.length; i++) {
-//         if (randomHangmanWords[i] !== guess) {
-//             wrongGuesses.push(guess)
-//         }
-//         else if(randomHangmanWords[i] == guess){
-//             rightGuesses.push(guess)
-//         }
-//     }
-// }
-
-// Now we need to ask the player to guess and compere the guesses with the splitted random word.
-function name(params) {
+function finalRandomWord(randomHangmanWords, guess) {
     // Gör om denna funktion med loopar som kommer behandla användarens gissningar och
-    // 
+    for (let i = 0; i < randomHangmanWords.length; i++) {
+        guess[i] = '_';
+    }
+    console.log(guess.join(''));
+}
+
+function name(params) {
+    
 }
 
 setUpGame()
