@@ -58,7 +58,7 @@ const hangmanWords = ['discord', 'programming', 'server', 'node', 'wallah']
 
 const randomHangmanWords = []
 
-function randomWords() {
+    function randomWords() {
     randomHangmanWords.push(hangmanWords[Math.floor(hangmanWords.length * Math.random())])
 }
 
@@ -67,7 +67,7 @@ function finalRandomWord(randomHangmanWords) {
     for (let i = 0; i < randomHangmanWords.length; i++) {
         final.push('_')
     }
-    // console.log(final.join(''));
+        console.log(final.join(''));
 }
 
 function playerGuess(guess) {
@@ -76,17 +76,25 @@ function playerGuess(guess) {
 
    if (wrongTries === 0) {
        console.log('You have lost the game...');
+       process.exit()
    }
    else if (guess.length === 1) {
         for (let g = 0; g < randomHangmanWords.length; g++) {
-            if (randomHangmanWords[g] === guess) {
+            if (guess === randomHangmanWords) {
                 final[g] = guess
             }
         }
-        console.log('You have: ', wrongTries, ' left');
-        console.log('Good job, you managed to guess a charachter right, keep it up.');
    }
-   else if ()
+   else if (guess === randomHangmanWords){
+       console.log('Congrats, you guessed right on a letter.');
+       console.log('Guess again!');
+       console.log('U have: ' + wrongTries + ' left');
+   }
+   else if(guess !== randomHangmanWords){
+       wrongTries --
+        console.log('Nice try but the guess was wrong, please guess again.');
+        console.log('U have: ' + wrongTries + ' left');
+   }
 }
 
 setUpGame()
