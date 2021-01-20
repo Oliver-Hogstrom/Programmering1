@@ -56,45 +56,45 @@ function setUpGame() {
 
 const hangmanWords = ['discord', 'programming', 'server', 'node', 'wallah']
 
-const randomHangmanWords = []
+const randomWord = []
 
-    function randomWords() {
-    randomHangmanWords.push(hangmanWords[Math.floor(hangmanWords.length * Math.random())])
-}
-
-function finalRandomWord(randomHangmanWords) {
+function finalRandomWord() {
     // Gör om denna funktion med loopar som kommer behandla användarens gissningar och
-    for (let i = 0; i < randomHangmanWords.length; i++) {
+    for (let i = 0; i < randomWord[0].length; i++) {
         final.push('_')
     }
-        console.log(final.join(''));
+    console.log(final.join(''));
+}
+
+function randomWords() {
+    randomWord.splice(0, randomWord.length) 
+    final.splice(0, final.length) 
+    randomWord.push(hangmanWords[Math.floor(hangmanWords.length * Math.random())])
+    finalRandomWord()
+    console.log(randomWord);
 }
 
 function playerGuess(guess) {
 
-    finalRandomWord(randomHangmanWords)
-
-   if (wrongTries === 0) {
-       console.log('You have lost the game...');
-       process.exit()
-   }
-   else if (guess.length === 1) {
-        for (let g = 0; g < randomHangmanWords.length; g++) {
-            if (guess === randomHangmanWords) {
+    if (wrongTries === 0) {
+        console.log('You have lost the game...');
+        process.exit()
+    } else if (guess.length == 1) {
+        for (let g = 0; g < randomWord[0].length; g++) {
+            if (guess === randomWord[g]) {
                 final[g] = guess
             }
         }
-   }
-   else if (guess === randomHangmanWords){
-       console.log('Congrats, you guessed right on a letter.');
-       console.log('Guess again!');
-       console.log('U have: ' + wrongTries + ' left');
-   }
-   else if(guess !== randomHangmanWords){
-       wrongTries --
+    } else if (guess === randomWord) {
+        console.log('Congrats, you guessed right on a letter.');
+        console.log('Guess again!');
+        console.log('U have: ' + wrongTries + ' left');
+    } else if (guess !== randomWord) {
+        wrongTries--
         console.log('Nice try but the guess was wrong, please guess again.');
         console.log('U have: ' + wrongTries + ' left');
-   }
+    }
+    console.log(final.join(''));
 }
 
 setUpGame()
