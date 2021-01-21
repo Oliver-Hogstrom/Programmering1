@@ -21,6 +21,7 @@
 
 // För att kunna köra detta programmet använder jag Readline
 
+const { log } = require('console');
 const readline = require('readline')
 
 const rl = readline.createInterface({
@@ -48,53 +49,72 @@ function intruductionToPlayer() {
     console.log("GL HF")
 }
 
+// This is a function for a basic setup with some other funcitons
+
 function setUpGame() {
     intruductionToPlayer()
     wrongTries = 7
     randomWords()
 }
 
+// This is the array with all the words for the game
+
 const hangmanWords = ['discord', 'programming', 'server', 'node', 'wallah']
 
-const randomWord = []
+var randomWord = ''
+
+// This funciton writes out the randomWord with underscores and as the user guesses it changes into the correct characters
 
 function finalRandomWord() {
-    // Gör om denna funktion med loopar som kommer behandla användarens gissningar och
-    for (let i = 0; i < randomWord[0].length; i++) {
+    for (let i = 0; i < randomWord.length; i++) {
         final.push('_')
     }
-    console.log(final.join(''));
+    console.log(final.join(' '));
 }
+
+// randomWords if the function that randomizes the word the player gets to guess at.
 
 function randomWords() {
-    randomWord.splice(0, randomWord.length) 
-    final.splice(0, final.length) 
-    randomWord.push(hangmanWords[Math.floor(hangmanWords.length * Math.random())])
+    final.splice(0, final.length)
+    randomWord = (hangmanWords[Math.floor(hangmanWords.length * Math.random())])
     finalRandomWord()
-    console.log(randomWord);
 }
 
-function playerGuess(guess) {
+// This is the function that lets the user guess and determine if the user guesses rigth or wrong.
 
+function playerGuess(guess) {
     if (wrongTries === 0) {
         console.log('You have lost the game...');
         process.exit()
     } else if (guess.length == 1) {
-        for (let g = 0; g < randomWord[0].length; g++) {
+        let temp = false
+        for (let g = 0; g < randomWord.length; g++) {
             if (guess === randomWord[g]) {
                 final[g] = guess
+                temp = true
             }
         }
+        
+        if (!temp) {
+            wrongTries--
+            console.log('Nice try but the guess was wrong, please guess again.');
+            console.log('U have: ' + wrongTries + ' left');
+        }else{
+            console.log('You have guessed a correct charachter, wohoo');
+            console.log('U have: ' + wrongTries + ' left');
+        }
     } else if (guess === randomWord) {
-        console.log('Congrats, you guessed right on a letter.');
-        console.log('Guess again!');
-        console.log('U have: ' + wrongTries + ' left');
+        console.log('U guessed on the whole word, AND YOU HAVE WON!!!');
+        process.exit()
     } else if (guess !== randomWord) {
         wrongTries--
-        console.log('Nice try but the guess was wrong, please guess again.');
+        console.log('U guessed on the whole word and it is wrong, guess again');
         console.log('U have: ' + wrongTries + ' left');
+    }if(final == randomWord){
+        console.log(final.join('_'));
+        process.exit()
     }
-    console.log(final.join(''));
+    console.log(final.join(' '));
 }
 
 setUpGame()
