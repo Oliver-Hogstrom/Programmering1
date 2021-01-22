@@ -21,7 +21,9 @@
 
 // För att kunna köra detta programmet använder jag Readline
 
-const { log } = require('console');
+const {
+    log
+} = require('console');
 const readline = require('readline')
 
 const rl = readline.createInterface({
@@ -33,11 +35,9 @@ const rl = readline.createInterface({
 
 let wrongTries = 7
 
-// Dessa listor kommer att bestå av rätta gissningar samt felaktiga gissningar
+// Dessa listor kommer att bestå av felaktiga gissningar samt "Final" som kommer ingå med mitt random ord
 
-const rightGuesses = []
 const wrongGuesses = []
-
 const final = []
 
 // This section is purly to give the instructions to the player about how the games is going to be played
@@ -49,7 +49,7 @@ function intruductionToPlayer() {
     console.log("GL HF")
 }
 
-// This is a function for a basic setup with some other funcitons
+// This is a function for a basic setup with some other funcitons such as the consol.log with the instructions to the player
 
 function setUpGame() {
     intruductionToPlayer()
@@ -59,7 +59,7 @@ function setUpGame() {
 
 // This is the array with all the words for the game
 
-const hangmanWords = ['discord', 'programming', 'server', 'node', 'wallah']
+const hangmanWords = ['discord', 'programming', 'server', 'node', 'wallah', 'computer', 'keyboard', 'monitor', 'javascript']
 
 var randomWord = ''
 
@@ -78,14 +78,17 @@ function randomWords() {
     final.splice(0, final.length)
     randomWord = (hangmanWords[Math.floor(hangmanWords.length * Math.random())])
     finalRandomWord()
+    console.log(randomWord);
+
 }
 
-// This is the function that lets the user guess and determine if the user guesses rigth or wrong.
+// This is the function that lets the user guess and determine if the user guesses rigth or wrong. As well as a for loop to cycle through the random word and see if "guess" is 1 charachter long
+// The function also handles if the player guesses the whole word in one go
+// it writes out all the wrong guesses that the player has made by pushing the wrong guess to an empty array.
 
 function playerGuess(guess) {
     if (wrongTries === 0) {
         console.log('You have lost the game...');
-        process.exit()
     } else if (guess.length == 1) {
         let temp = false
         for (let g = 0; g < randomWord.length; g++) {
@@ -94,31 +97,43 @@ function playerGuess(guess) {
                 temp = true
             }
         }
-        
+
         if (!temp) {
             wrongTries--
             console.log('Nice try but the guess was wrong, please guess again.');
             console.log('U have: ' + wrongTries + ' left');
-        }else{
+            wrongGuesses.push(guess)
+            console.log('You have gussed on: ' + wrongGuesses);
+        } else {
             console.log('You have guessed a correct charachter, wohoo');
             console.log('U have: ' + wrongTries + ' left');
+            console.log('You have gussed on: ' + wrongGuesses);
         }
     } else if (guess === randomWord) {
         console.log('U guessed on the whole word, AND YOU HAVE WON!!!');
-        process.exit()
     } else if (guess !== randomWord) {
         wrongTries--
         console.log('U guessed on the whole word and it is wrong, guess again');
         console.log('U have: ' + wrongTries + ' left');
-    }if(final == randomWord){
-        console.log(final.join('_'));
-        process.exit()
+    }
+    if (final.join('') == randomWord) {
+        console.log('CONGRATS, YOU HAVE WON');
+        console.log(final.join(''));
     }
     console.log(final.join(' '));
+}
+
+// This function is for asking the player if they want to play again or not
+
+function playAgain() {
+    if (final.join('') == randomWord){
+        console.log('Do you want to play again?');
+        console.log('y/n');
+    }
 }
 
 setUpGame()
 
 rl.on('line', (guess) => {
-    playerGuess(guess)
+    playerGuess(guess) 
 })

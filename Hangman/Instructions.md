@@ -1,8 +1,8 @@
 #Hangman
 <br>
-// 1. Ge användaren instruktioner om hur spelet ska gå till med console.log()
+//  1. Ge användaren instruktioner om hur spelet ska gå till med console.log()
 <br>
-// 2. Slumpa ett ord från en lista som användaren ska gissa på med en random funktion() använder mig av math.floor och en array för att slumpa ett ord
+// 2. Slumpa ett ord från en lista som användaren ska gissa på med en random funktion()
 <br>
 //     2.1 Slumpa eller be användaren att skriva in ett eget ord som andra ska gissa på (Optional)
 <br>
