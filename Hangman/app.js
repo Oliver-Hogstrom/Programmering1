@@ -78,7 +78,7 @@ function randomWords() {
     final.splice(0, final.length)
     randomWord = (hangmanWords[Math.floor(hangmanWords.length * Math.random())])
     finalRandomWord()
-    console.log(randomWord);
+    
 
 }
 
@@ -111,6 +111,7 @@ function playerGuess(guess) {
         }
     } else if (guess === randomWord) {
         console.log('U guessed on the whole word, AND YOU HAVE WON!!!');
+        process.exit()
     } else if (guess !== randomWord) {
         wrongTries--
         console.log('U guessed on the whole word and it is wrong, guess again');
@@ -119,6 +120,7 @@ function playerGuess(guess) {
     if (final.join('') == randomWord) {
         console.log('CONGRATS, YOU HAVE WON');
         console.log(final.join(''));
+        process.exit()
     }
     console.log(final.join(' '));
 }
